@@ -244,12 +244,18 @@ sum(seqtab.nochim)/sum(seqtab) # Gives you the percentage of sequences recovered
 ## This is a ggod check points. Even if a lot of ASVs have been removed, the majority of reads sould
 ## be retained. Usually >0.80 (aka 80%) are retained
 
+# Save a your sequence table in a .rds file
+saveRDS(seqtab.nochim, file = "rds/seqtab.nochim.rds")
+
 ## Assign Taxonomy. Point to where the silva database actually is
 taxa <- assignTaxonomy(seqtab.nochim, "~/silva_nr_v132_train_set.fa.gz", multithread=TRUE)
 taxa <- addSpecies(taxa, "~/silva_species_assignment_v132.fa.gz")
 taxa.print <- taxa # Removing sequence rownames for display only
 rownames(taxa.print) <- NULL
 write.csv(taxa.print, "taxa_print.csv") # For inspection in bash or excel
+
+# Save a your taxa table in a .rds file
+saveRDS(taxa, file = "rds/taxa.rds")
 
 ## Phylogenetic tree building. MSA and Phangorn used in the original publication
 ## scale quadratically with the number of ASV, and became quickly unisable. I have moved to
