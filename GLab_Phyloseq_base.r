@@ -85,9 +85,9 @@ env_data
 ### Making Phyloseq Object
 
 #loading .rds files
-seqtab_nochim<-readRDS("rds/seqtab_nochim.rds")
-taxa<-readRDS("rds/taxa.rds")
-tree<-readRDS("rds/tree.rds")
+seqtab_nochim<-readRDS("dada2/rds/seqtab_nochim.rds")
+taxa<-readRDS("dada2/rds/taxa.rds")
+tree<-read.tree("dada2/tree/tree.rds")
 
 prok_data_raw<-phyloseq(sample_data(env_data),
                         otu_table(seqtab_nochim, taxa_are_rows = F),
